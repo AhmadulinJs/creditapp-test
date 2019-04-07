@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Main CSS-->
+        <link rel="stylesheet" type="text/css" href="/css/main.css">
+        <!-- Font-icon css-->
+        <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    <title> Добавить новый клиент</title>
+    
+  </head>
+  <body class="app sidebar-mini rtl pace-done">
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Оплата</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="payment_monthly_debt">
+                            <div class="form-group">
+                                <label for="payment">Сумма платежа</label>
+                                <input type="number" id="payment" placeholder="Сумма платежа" name="payment_monthly_debt" class="form-control">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыт</button>
+                        <button type="button" class="btn btn-primary" id="md_save">Сохранить</button>
+                    </div>
+                    </div>
+                </div>
+            </div>
+    <%- include ../components/header%>
+    <%- include ../components/menu%>
+    <main class="app-content">
+        <div class=" container" style="display: block; position: relative;">
+            <div style="display: block; position: fixed; top: -1em; right: 2px; z-index: 56456; width: 100%; " >
+                <%- include ../partials/messages%>
+            </div>
+        </div>
+
+        <div class=" col-lg-12 col-sm-12 col-md-12 mx-lg-auto">
+            <div class="tile">
+                <h3 class="tile-title"><%=client.fname%> <%=client.lname%></h3>
+                <div class="tile-body">
+                    <div class="row">
+                        <section class="col-12" >
+                                
+                            <div class="df jcc mt-1">
+                                            <!-- <div id="response_error"></div> -->
+                                <div class="row ">
+                                    <div class="col-6 col-sm-6 col-md-3 col-lg-3">
+                                        <div class="text-center mt-2">
+                                            <img src="/static_img/user_icon.png" class="avatar img-circle img-thumbnail">
+                                        </div></hr>
+                                    </div>
+                                    <div class="col-12 col-sm-12 col-md-9 col-lg-9">
+                                        <nav class="mt-2">
+                                            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                                                <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Клиент</a>
+                                                <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Кредиты</a>
+                                                <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Редактировать</a>
+                                            </div>
+                                        </nav>
+                                        <div class="tab-content" id="nav-tabContent">
+                                            <div class="tab-pane fade show active pt-3" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                                                <div class="row p-3">
+                                                    <div class="col-4">
+                                                        <h5>Имя:</h5>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <h5>
+                                                            <%=client.fname%>
+                                                        </h5>
+                                                    </div>
+                                                </div>
+                                                <div class="row pl-3">
+                                                    <div class="col-4">
+                                                        <h5>Фамилия:</h5>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <h5>
+                                                            <%=client.lname%>
+                                                        </h5>
+                                                    </div>
+                                                </div>
+                                                <div class="row p-3">
+                                                    <div class="col-4">
+                                                        <h5>Номер телефона:</h5>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <h5><%=client.tel%></h5>
+                                                    </div>
+                                                </div>
+                                                <div class="row p-3">
+                                                    <div class="col-4">
+                                                        <strong>Дополнительная информация:</strong> <br>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <strong><%=client.info%></strong> <br>
+                                                    </div>
+                                                </div>
+                                                <h3 class="p-3">Документы</h3><br>
+                                                <div class="row">
+                                                    <% client.files.forEach( (img, id) => { %>
+                                                        <div class="col-3">
+                                                            <img src="/client_img/<%=img%>" alt="" class="img-thumbnail">
+                                                        </div>
+                                                    <%} )%>
+                                                </div>
+                                            </div>
+                                            <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                                                <%if( credits.length > 0 ){%>
+                                                
+                                                    <div class="row mt-4">
+                                                            <h1 class="text-center mb-3 mx-auto">Кредиты клиента</h1>
+                                                        <div class="col-12 m-auto table-responsive">
+                                                            
+                                                            <table class="table table-striped w-100 w-sm-100 w-md-100 mx-auto">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>ID</th>
+                                                                        <th>Продукт</th>
+                                                                        <th>Цена</th>
+                                                                        <th>Взнос</th>
+                                                                        <th>Ежемесячный </th>
+                                                                        <th>Остатки</th>
+                                                                        <th>Срок</th>
+                                                                        <th>Статус</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <% credits.forEach( ( credit, index ) => { %>
+                                                                        <tr>
+                                                                            <th><%=index+1%></th>
+                                                                            <td><%=credit.product.name%> <%=credit.product.model%></td>
+                                                                            <td>
+                                                                                <%=credit.price%> <%=credit.currency%> 
+                                                                            </td>
+                                                                            <td>
+                                                                                <%=credit.amount%> <%=credit.currency%>
+                                                                            </td>
+                                                                            <td>
+                                                                                <%=credit.monthly%> <%=credit.currency%> 
+                                                                            </td>
+                                                                            <td>
+                                                                                    <%=credit.debts%> <%=credit.currency%> 
+                                                                            </td>
+                                                                            <td><%=credit.lifetime%> Месяц</td>
+                                                                            <td>
+                                                                                <% if(credit.debts == 0 ){%>
+                                                                                    <span class="btn btn-success">Без долгов</span>
+                                                                                <% } else{ %>
+                                                                                    <span class="btn btn-danger">Есть долг</span>
+                                                                                <% } %>
+                                                                            </td>
+                                                                        </tr>
+                                                                    <%} ) %>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row mt-4 mb-4">
+                                                        <h1 class="text-center mb-3 mx-auto">Выплаты кредитов</h1>
+                                                        <div class="col-12 m-auto table-responsive">
+                                                            <table class="table table-striped w-100 w-sm-100 w-md-100 mx-auto">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>ID</th>
+                                                                        <th>Продукт</th>
+                                                                        <th>Ежемесячный </th>
+                                                                        <th>Дата выплаты</th>
+                                                                        <th>Остаток долга текущего месяца</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <% var a = 1; credits.forEach( credit  => { %>
+                                                                        <% credit.payments.forEach( ( payment, index ) => { %>
+                                                                            <tr>
+                                                                                <th><%=a++ %></th>
+                                                                                <td><%=credit.product.name%> <%=credit.product.model%></td>
+                                                                                <td><%=payment.payment%> <%=credit.currency%> </td>
+                                                                                <td><%= payment.date %></td>
+                                                                                <% if( payment.monthly_debt ) { %>
+                                                                                    <td>
+                                                                                        <%=payment.monthly_debt%> <%=credit.currency%> 
+                                                                                        <button class="btn btn-warning ml-3 custom_modal_btn" data-credit="<%=credit._id%>"  data-paymentid="<%=payment.id%>" > Сделать платеж</button>
+                                                                                    </td>
+                                                                                <% } else{ %>
+                                                                                    <td>0 <%=credit.currency%></td>
+                                                                                <% } %>
+                                                                            </tr>
+                                                                        <% } ) %>
+                                                                    <% } ) %>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div> 
+                                                    <!-- <button type="button"data-toggle="modal" data-target="#exampleModalCenter" ></button> -->
+                                                <%} else { %>
+                                                    <div class="row mt-4">
+                                                        <div class="col-12">
+                                                            <h1 class="text-center">Нет кредитов</h1>
+                                                        </div>
+                                                    </div>
+                                                <%}%>
+                                                
+                                            </div>
+                                            <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+                                                <div class="row pt-5">
+                                                    <div class= col-12 m-auto">
+                                                        <div class="custom-card df jcc fww " >
+                                                            <div class="card-head df jcc w-100 mt-1">
+                                                                <h1 class="mx-auto">Изменить клиент</h1>
+                                                            </div>
+                                                            <div>
+                                                                <form class=" pt-3" action="/clients/edit/<%=client._id%>" method="POST">
+                                                                    <input type="hidden" name="_method" value="PUT">
+                                                                    <div class="form-group">
+                                                                        <label  for="fname">Имя</label>
+                                                                        <input  class="form-control" type="text" id="fname" name="fname" value="<%=client.fname%>"  autocomplete="off"/>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="lname">Фамилия</label>
+                                                                        <input class="form-control" type="text" id="lname" name="lname" value="<%=client.lname%>" autocomplete="off"/>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="tel" class="col-form-label">Номер телефона</label>
+                                                                        <input class="form-control" type="tel" name="tel" id="tel" value="<%=client.tel%>" autocomplete="off">
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="description">Дополнительная информация</label>
+                                                                        <textarea class="form-control" name="info" id="description" rows="3"><%=client.info%></textarea>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="">Документы</label>
+                                                                        <input class="form-control" type="file" id="file" name="file" multiple>
+                                                                        <span id="upBtn" class="btn btn-primary ml-1 " data-userid="<%= client._id %>" style="height:40px!important; margin-top: 10px;" >Загрузить</span>
+                                                                    </div>
+                                                                    <div class="row mb-3 db" id="edit-images" >
+                                                                        <% client.files.forEach( (img, id) => { %>
+                                                                            <div class="col-3 custom-images">
+                                                                                <span class="btn btn-danger custom-delete"  data-userid="<%= client._id %>" data-img="<%=img%>">Удалить</span>
+                                                                                <img src="/client_img/<%=img%>" class="img-thumbnail ">
+                                                                            </div>
+                                                                        <%} )%>
+                                                                    </div>
+                                                                    <input class="btn btn-primary" type="submit" value="Сохранить">
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>  
+                    </div>
+                </div>
+            </div>
+        </div>                                
+    </main>
+    <script src="/js/jquery-3.2.1.min.js"></script>
+    <script src="/js/popper.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/main.js"></script> 
+    <script src="/js/plugins/pace.min.js"></script>
+    <script src="/js/app.js"></script>
+    <script>
+        let search = new Search( `.search-block` );
+        search.execute();
+    </script>
+    <script>
+        function DeleteImg( el ){
+
+            if( confirm('Вы уверены в том, что хотите удалить данное изображение?') ){
+
+                let curr_el = el.target;
+
+                fetch( `/clients/profile/delete/${curr_el.dataset.userid}/${curr_el.dataset.img}`, {
+                    method : `Delete`
+                }  )
+                .then( response => response.json() )
+                .then( response => {
+                    
+                    if( response.status == 200 ) curr_el.parentNode.remove() ;
+                } )
+            }
+        }
+
+
+        const imgParent = document.getElementById( `edit-images` );
+        
+        const CustomImages = imgParent.querySelectorAll( `.custom-images` );
+
+        CustomImages.forEach( e => {
+
+            e.querySelector( `.custom-delete` ).addEventListener( `click`, DeleteImg );
+        } );
+
+        const newImg = document.getElementById( `newImg` );
+
+        const upBtn = document.getElementById( `upBtn` );
+        
+        upBtn.addEventListener( `click`, e => { 
+
+            const files = document.getElementById( `file` ).files;
+
+            console.log( files );
+
+            const formData = new FormData();
+
+            for (let i = 0; i < files.length; i++) {
+                let file = files[i];
+
+                formData.append('files', file);
+            }
+            fetch( '/api/profile/updateimg/' + e.target.dataset.userid, {
+                method: 'POST',
+                body: formData,
+                headers: new Headers( {
+
+                    'Accept': 'application/json',
+                } )
+            }).then( response => response.json())
+            .then( response => {
+                
+                let images = document.getElementById( `edit-images` );
+                images.innerHTML = ``;
+                response.files.forEach( file => {
+
+                    let div = document.createElement( `DIV` );
+                    div.classList.add( `col-4` );
+                    div.classList.add( `custom-images` );
+                    
+                    let span = document.createElement( `span` );
+                    span.classList.add( `btn` );
+                    span.classList.add( `btn-danger` );
+                    span.classList.add( `custom-delete` );
+                    span.dataset.userid = response._id;
+                    span.dataset.img = file;
+                    span.textContent = `Удалить`;
+                    span.addEventListener( `click`, DeleteImg );
+                    let img = document.createElement( `IMG` );
+                    img.setAttribute( `src`, `/client_img/${file}` );
+                    img.classList.add( `img-thumbnail` );
+
+                    div.appendChild( span );
+                    div.appendChild( img );
+                    images.appendChild( div );
+
+                } );
+                document.getElementById( `file` ).value = ``;
+
+                window.location.reload();
+            } );
+        } );
+
+        const custom_modal_btn = document.querySelectorAll( `.custom_modal_btn` );
+        const md_save = document.getElementById( `md_save` );
+        const monthly_debt_form = document.getElementById( `payment_monthly_debt` );
+
+        custom_modal_btn.forEach( btn => {
+
+            btn.addEventListener( `click`, e => {
+
+                // exampleModalCenter
+                $('#exampleModalCenter').modal('show')
+
+                // let current_p_id = 
+                if( monthly_debt_form.dataset.paymentid ){
+
+                    monthly_debt_form.removeAttribute( `data-paymentid` );
+                    monthly_debt_form.removeAttribute( `data-credit` );
+
+                    monthly_debt_form.dataset.paymentid = e.target.dataset.paymentid;
+                    monthly_debt_form.dataset.credit = e.target.dataset.credit;
+                }
+                else{
+                    monthly_debt_form.dataset.credit = e.target.dataset.credit;
+                    monthly_debt_form.dataset.paymentid = e.target.dataset.paymentid;
+                }
+            } );
+        } );
+
+        let md_save_event = e => {
+            e.preventDefault();
+
+            let input = monthly_debt_form.querySelector( `input` );
+
+            //monthly_debt_form.dataset.credit
+            // console.log( monthly_debt_form.getAttribute( "data-credit" ) );
+
+            let data = {};
+            const formData = new FormData();
+
+            // inputs.forEach( input => {
+                data[input.name] = input.value;
+                data.paymentid = monthly_debt_form.dataset.paymentid;
+                formData.append( `${input.name}`, input.value );
+            // } );
+
+            // console.log(  );
+            
+            fetch( '/api/monthlydebtpayment/' + monthly_debt_form.dataset.credit, {
+                method: `POST`,
+                body: JSON.stringify(data),
+                headers: new Headers( {
+                    
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+                } )
+            } )
+            .then( r => r.json() )
+            .then( response => {
+                if( response && response.code == 200 ){
+                    location.reload();
+                }
+                else{
+                    let div = document.createElement( `DIV` );
+                    div.classList.add( `alert alert-danger alert-dismissible fade show` );
+                    div.setAttribute( `role`, `alert` );
+
+                    let btn = document.createElement( `BUTTON` );
+                    btn.dataset.dismiss = `alert`;
+                    btn.classList.add( `close` );
+                    btn.setAttribute( `type`, `button` );
+                    btn.setAttribute( `aria-label`, `Close` );
+
+                    let span = document.createElement( `aria-hidden`, `true` );
+                    btn.appendChild( span );
+                    div.appendChild( btn );
+                    document.getElementById( `response_error` ).appendChild( div );
+                }
+            } );
+            
+        }
+
+        md_save.addEventListener( `click`, md_save_event );
+        monthly_debt_form.addEventListener( `submit`, md_save_event );
+
+    </script>
+  </body>
+</html>
+

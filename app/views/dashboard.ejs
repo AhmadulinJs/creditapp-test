@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="description" content="Vali is a responsive and free admin theme built with Bootstrap 4, SASS and PUG.js. It's fully customizable and modular.">
+    <title>Dashboard</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Main CSS-->
+    <link rel="stylesheet" type="text/css" href="/css/main.css">
+    <!-- Font-icon css-->
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  </head>
+  <style>
+    
+  </style>
+  <body class="app sidebar-mini rtl pace-done">
+    <!-- Navbar-->
+    
+    <%- include ./components/header%>
+    <!-- Sidebar menu-->
+    <%- include ./components/menu%>
+    
+    <main class="app-content">
+        <%- include ./partials/messages%>
+      <div class="app-title">
+        <!-- <div>
+          <h1><i class="fa fa-dashboard"></i> Dashboard</h1>
+          <p>A free and open source Bootstrap 4 admin template</p>
+        </div> -->
+        <ul class="app-breadcrumb breadcrumb">
+          <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+          <li class="breadcrumb-item"><a href="/dashboard">Dashboard</a></li>
+        </ul>
+      </div>
+      <div class="row">
+      
+
+        <a href="#" class="col-md-6 col-lg-4 mb-3 mb-sm-3 mb-m-md-0 mb-lg-0 " style="height:160px; text-decoration: none !important;">
+          <div class="widget-small primary" style="height:160px;">
+            <i class="icon fa fa fa-calculator fa-5x "></i>
+            <div class="info">
+              <h3 class="mb-2">
+                <b>Общая сумма кредита</b>
+              </h3>
+              <h5 >
+                <%=PriceUSD %>
+              </h5>
+              <h5>
+                <%=PriceUZS %>
+              </h5>
+            </div>
+          </div>
+        </a>
+        <!-- class="widget-small info coloured-icon" -->
+        <a href="/clients/debtors/today/1" class="col-md-6 col-lg-4 mb-3 mb-sm-3 mb-m-md-0 mb-lg-0 " style="height:160px; text-decoration: none !important;">
+          <div class="widget-small primary" style="height:160px;">
+            <i class="icon fa fa-users fa-5x "></i>
+            <div class="info">
+              <h3 class="mb-2">
+                <b>Список людей, чтобы заплатить сегодня</b>
+              </h3>
+              <!-- <h5 >
+                <%=PriceUSD %>
+              </h5>
+              <h5>
+                  <%=PriceUZS %>
+              </h5> -->
+            </div>
+          </div>
+        </a>
+        
+        <a href="/clients/monthlydeptors/1" class="col-md-6 col-lg-4 " style="height:160px; text-decoration: none !important;">
+          <div class="widget-small primary" style="height:160px;">
+            <i class="icon fa fa-address-card-o fa-5x "></i>
+            <div class="info">
+              <h3 class="mb-2">
+                <b>Список клиентов должников за етот месяц</b>
+              </h3>
+              <h5 >
+                  <%=MonthlyUSD %>
+              </h5>
+              <h5>
+                  <%=MonthlyUZS %>
+              </h5>
+            </div>
+          </div>
+        </a>
+      </div>
+
+    </main>
+    <!-- Essential javascripts for application to work-->
+    <script src="/js/jquery-3.2.1.min.js"></script>
+    <script src="/js/popper.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/main.js"></script>
+    <!-- The javascript plugin to display page loading on top-->
+    <script src="js/plugins/pace.min.js"></script>
+    <!-- Page specific javascripts-->
+    <script src="/js/app.js"></script>
+    <script>
+        let search = new Search( `.search-block` );
+        search.execute();
+    </script>
+  </body>
+</html>

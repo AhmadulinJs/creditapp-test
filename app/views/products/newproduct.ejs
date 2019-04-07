@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Main CSS-->
+    <link rel="stylesheet" type="text/css" href="/css/main.css">
+    <!-- Font-icon css-->
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" type="text/css" href="/css/main.css">
+    <title> Добавить новый продукт</title>
+    
+  </head>
+  <body class="app sidebar-mini rtl pace-done">
+        <%- include ../components/header%>
+        <%- include ../components/menu%>
+        <main class="app-content">
+
+            <div class=" container" style="display: block; position: relative;">
+                <div style="display: block; position:absolute; bottom: -1em; right: 2px; z-index: 56456; width: 100%; " >
+                    <%- include ../partials/messages%>
+                </div>
+            </div>
+
+                <div class=" col-lg-8 col-sm-12 col-md-12 mx-lg-auto">
+                    <div class="tile">
+                        <h3 class="tile-title">Новый продукт</h3>
+                        <div class="tile-body">
+                            <form class="" action="/products/new" method="POST">
+                                <div class="form-group">
+                                    <label class="control-label" for="fname">Компания продукта</label>
+                                    <input class="form-control" type="text" placeholder="Компания продукта"  id="name" name="name" autocomplete="off">
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label">Модель продукта</label>
+                                    <input class="form-control" id="model" name="model" autocomplete="off" placeholder="Модель продукта">
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label">Тип продукта</label>
+                                    <input class="form-control" rows="4" placeholder="Тип продукта" id="type" name="type" autocomplete="off"></input>
+                                </div>
+                                
+                                
+                                    <button class="btn btn-primary" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i>Сохранить</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>                                
+                </div>
+            </main>
+
+   
+    <!-- The javascript plugin to display page loading on top-->
+   
+
+    <!-- <script src="/js/app.js"></script>
+    <script>
+        document.addEventListener( `DOMContentLoaded`, e => {
+            let dropdown = new Dropdown( "dropdown" );
+            dropdown.execute(); 
+            let userdropdown = new UserDropdown( '.user' ) //`u-dropdown-btn`
+            userdropdown.execute();
+            let customForms = new CustomForms( `.card-forms` );
+            customForms.execute();
+            let search = new Search( `.search-block` );
+            search.execute();
+        }  );
+    </script> -->
+    <script src="/js/jquery-3.2.1.min.js"></script>
+    <script src="/js/popper.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/main.js"></script> 
+    <script src="/js/plugins/pace.min.js"></script>
+    <script src="/js/app.js"></script>
+    <script>
+        let search = new Search( `.search-block` );
+        search.execute();
+    </script>
+  </body>
+</html>
+

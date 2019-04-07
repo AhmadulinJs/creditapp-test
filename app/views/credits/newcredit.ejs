@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Main CSS-->
+    <link rel="stylesheet" type="text/css" href="/css/main.css">
+    <!-- Font-icon css-->
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/main.css">
+    <title> Новый кредить</title>
+    
+  </head>
+  <body class="app sidebar-mini rtl pace-done">
+        <%- include ../components/header%>
+        <%- include ../components/menu%>
+        <main class="app-content">
+            <div class=" container" style="display: block; position: relative;">
+                <div style="display: block; position: fixed; top: -1em; right: 2px; z-index: 56456; width: 100%; " >
+                    <%- include ../partials/messages%>
+                </div>
+            </div>
+                <div class=" col-lg-6 col-sm-12 col-md-10 mx-lg-auto">
+                    <div class="tile">
+                        <h3 class="tile-title">Добавить новый клиент</h3>
+                        <div class="tile-body">
+                            <form class="" action="/credits/new" method="POST" >
+                                <div class="form-group">
+                                    <label for="client">Клиент</label>
+                                    <select class="form-control" id="client" name="client">
+                                            <option disabled selected="">Выберите клиента</option>
+                                            <%if( clients && clients.length > 0 ) {%>
+                                                <% clients.forEach( client => { %>
+                                                    <option value="<%=client._id%>"><%=client.fname%> <%=client.lname%></option>
+                                                <%} ) %>
+                                            <%} %>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="product">Клиент</label>
+                                    <select class="form-control" id="product" name="product">
+                                        <option disabled selected="">Выберите продукт</option>
+                                        <% if( products && products.length > 0 ) {%>
+                                            <% products.forEach( product => { %>
+                                                <option value="<%= product._id%>"><%=product.name%> <%=product.model%></option>
+                                            <%} ) %>
+                                        <% } %>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="client">Валюта платежа</label>
+                                    <select class="custom-select" id="client" name="currency">
+                                        <option disabled selected="">Выберите валюту</option>
+                                        <option value="USD">USD</option>
+                                        <option value="UZS">UZS</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="price">Цена продукта</label>
+                                    <input type="number" id="price" name="price" class="form-control"  autocomplete="off"/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="amount">Начальная сумма</label>
+                                    <input type="number" id="amount" name="amount" class="form-control" autocomplete="off"/>
+                                </div>
+                                <div class="form-group ">
+                                    <label for="issue" class="col-form-label">Ежемесячный платеж</label>
+                                    <input class="form-control" type="number" name="monthly_payment" id="issue" autocomplete="off">
+                                </div>
+                                <div class="form-group ">
+                                    <label for="lifetime" class="col-form-label">Срок кредита</label>
+                                    <input class="form-control" type="number" name="lifetime" id="lifetime" autocomplete="off">
+                                </div>
+                                <div class="form-group ">
+                                    <label for="lifetime" class="col-form-label">Дата оплаты</label>
+                                    <input class="form-control" type="number" name="date_of_payment" id="lifetime" autocomplete="off">
+                                </div>
+                                
+                                <div class="form-group ">
+                                    <label for="lifetime" >Дата получения</label>
+                                    <input class="form-control" id="demoDate" type="date"  name="credit_date" autocomplete="off">
+                                </div>
+                                <div class="tile-footer">
+                                    <button class="btn btn-primary" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i>Сохранить</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>                                
+                </div>
+            </main>
+
+   
+    <!-- The javascript plugin to display page loading on top-->
+   
+
+    <!-- <script src="/js/app.js"></script>
+    <script>
+        document.addEventListener( `DOMContentLoaded`, e => {
+            let dropdown = new Dropdown( "dropdown" );
+            dropdown.execute(); 
+            let userdropdown = new UserDropdown( '.user' ) //`u-dropdown-btn`
+            userdropdown.execute();
+            let customForms = new CustomForms( `.card-forms` );
+            customForms.execute();
+            let search = new Search( `.search-block` );
+            search.execute();
+        }  );
+    </script> -->
+    <script src="/js/jquery-3.2.1.min.js"></script>
+    <script src="/js/popper.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/main.js"></script> 
+    <script src="/js/plugins/pace.min.js"></script>
+    <script src="/js/app.js"></script>
+    <script>
+        let search = new Search( `.search-block` );
+        search.execute();
+    </script>
+
+  </body>
+</html>

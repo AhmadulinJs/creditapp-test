@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:site" content="@pratikborsadiya">
+    <meta property="twitter:creator" content="@pratikborsadiya">
+    <!-- Open Graph Meta-->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Vali Admin">
+    <meta property="og:title" content="Vali - Free Bootstrap 4 admin theme">
+    <meta property="og:url" content="http://pratikborsadiya.in/blog/vali-admin">
+    <meta property="og:image" content="http://pratikborsadiya.in/blog/vali-admin/hero-social.png">
+    <meta property="og:description" content="Vali is a responsive and free admin theme built with Bootstrap 4, SASS and PUG.js. It's fully customizable and modular.">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Main CSS-->
+    <link rel="stylesheet" type="text/css" href="/css/main.css">
+    <!-- Font-icon css-->
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <title>Список клиентов</title>
+    
+  </head>
+  <body class="app sidebar-mini rtl pace-done">
+
+        <%- include ../components/header%>
+        <%- include ../components/menu%>
+        
+        <main class="app-content">
+
+            <div class=" container" style="display: block; position: relative;">
+                <div style="display: block; position:absolute; bottom: -1em; right: 2px; z-index: 56456; width: 100%; " >
+                    <%- include ../partials/messages%>
+                </div>
+            </div>
+            
+            <div class=" col-lg-8 col-sm-12 col-md-12 mx-lg-auto">
+                <div class="tile">
+                    <h3 class="tile-title"> Список клиентов</h3>
+                    <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col-1" style="width:1.5em;">ID</th>
+                                <th scope="col" style="width:auto;">Клиент</th>
+                                <th scope="col" style="width:auto;">Продукт</th>
+                                <th scope="col" style="width:auto;">Цена</th>
+                                <th scope="col" style="width:auto;">Е/долг</th>
+                                <th scope="col" style="width:auto;">Дата</th>
+                                <th scope="col" style="width:auto;">Е/платежи</th>
+                                <th scope="col" style="width:2em; margin-right: 2em;">Действие</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% credits.forEach( ( credit, index ) => { %>
+                                <%if( credit.monthly_debt ){%>
+                                    <tr>
+                                    <td><%= index + parseInt(current)  %></td>
+                                    <td><%= credit.credit_id.client.fname %> <%= credit.credit_id.client.lname %></td>
+                                    <td><%= credit.credit_id.product.name %> <%= credit.credit_id.product.model %></td>
+                                    <td><%= credit.credit_id.price %> <%= credit.credit_id.currency %></td>
+                                    <td><%= credit.monthly_debt %> <%= credit.credit_id.currency %></td>
+                                    <td><%= credit.payment %> <%= credit.credit_id.currency %></td>
+                                    <td><%= credit.date %> </td>
+                                    <td>
+                                        <a class="btn btn-primary" href="/clients/profile/<%=credit.credit_id.client._id%>">Больше</a>
+                                    </td>
+                                    </tr>
+                                <%}%>
+                            <% } ) %>
+                        </tbody>
+                    </table>
+                    </div>
+                    <div class="df jcc aic mt-3">
+                        <% if ( pages > 0 ) { %>
+                            <ul class="pagination justify-content-center">
+                                <% if (current == 1) { %>
+                                    <li class="page-item disabled">
+                                        <span class="page-link">Первый</span>
+                                    </li>
+                                <% } else { %>
+                                    <li class="page-item ">
+                                        <a class="page-link" href="/clients/monthlydeptors/1">Первый</a>
+                                    </li>
+                                <% } %> <% var i = (Number(current) > 5 ? Number(current) - 4 : 1) %>
+                                <% if (i !== 1) { %>
+                                    <li class="page-item " aria-current="page">
+                                        <span class="page-link"> ... <span class="sr-only"></span> </span>
+                                    </li>
+                                <% } %> <% for (; i <= (Number(current) + 4) && i <= pages; i++) { %>
+                                <% if (i == current) { %>
+                                    <li class="page-item active" aria-current="page">
+                                        <span class="page-link">
+                                            <%= i %> <span class="sr-only"></span>
+                                        </span>
+                                    </li>
+                                <% } else { %>
+                                    <li class="page-item">
+                                        <a class="page-link" href="/clients/monthlydeptors/<%= i %>"><%= i %></a>
+                                    </li>
+                                <% } %> <% if (i == Number(current) + 4 && i < pages) { %>
+                                    <li class="page-item" aria-current="page">
+                                        <span class="page-link"> ... <span class="sr-only"></span> </span>
+                                    </li>
+                                <% } %> <% } %> <% if (current == pages) { %>
+                                    <li class="page-item disabled">
+                                        <span class="page-link">Последний</span>
+                                    </li>
+                                <% } else { %>
+                                    <li class="page-item ">
+                                        <a class="page-link" href="/clients/monthlydeptors/<%= i %>">Последний</a>
+                                    </li>
+                                <% } %>
+                            </ul>
+                        <% } %>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <script src="/js/jquery-3.2.1.min.js"></script>
+        <script src="/js/popper.min.js"></script>
+        <script src="/js/bootstrap.min.js"></script>
+        <script src="/js/main.js"></script>
+        <!-- The javascript plugin to display page loading on top-->
+        <script src="/js/plugins/pace.min.js"></script>
+        <script src="/js/app.js"></script>
+        <script>
+            let search = new Search( `.search-block` );
+            search.execute();
+        </script>
+  </body>
+</html>

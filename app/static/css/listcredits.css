@@ -1,0 +1,10 @@
+body{
+    position: relative;
+}
+.debt-sum {
+    position: absolute;
+    right: 1em;
+    top: 6em;
+    background: red;
+    width: 15%;
+}

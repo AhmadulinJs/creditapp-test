@@ -1,0 +1,34 @@
+.search-hide{
+    display: none;
+    visibility: hidden;
+    opacity: 0;
+}
+.custom-seaarch-result {
+    position: absolute;
+    background: #cacaca;
+    width: 255px ;
+    max-height: 150px;
+    border: 1px solid rgba(0,0,0,0.15);
+    background: #fff;
+    padding-inline-start: 8px !important;
+    padding: 8px;
+    z-index: 999999;
+}
+
+.custom-seaarch-result > li {
+    list-style: none;
+    cursor: pointer;
+    padding: 5px;
+    color: #373a3c;
+}
+
+.custom-seaarch-result > li:last-child {
+    padding-bottom: 5px;
+}
+
+.custom-seaarch-result > li:hover{
+    background: rgb(218, 218, 218);
+}
+body{
+    font-weight: bold;
+}
